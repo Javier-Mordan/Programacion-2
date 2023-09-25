@@ -1,0 +1,99 @@
+﻿
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Editar</h2>
+
+<style>
+    .Contenedor {
+        max-width: 400px; /* Ancho máximo del formulario */
+        margin: 0 auto; /* Centra el formulario horizontalmente */
+        padding: 20px; /* Espaciado interno del contenedor */
+        border: 1px solid #ccc; /* Borde del contenedor */
+        border-radius: 5px; /* Bordes redondeados */
+        background-color: #f9f9f9; /* Fondo del contenedor */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    }
+
+    /* Estilo para los campos de entrada */
+    .form-group {
+        margin-bottom: 15px; /* Espaciado entre campos */
+    }
+
+    label {
+        display: block; /* Muestra la etiqueta en una nueva línea */
+        margin-bottom: 5px; /* Espaciado inferior de la etiqueta */
+        font-weight: bold; /* Texto en negrita */
+    }
+
+    input {
+        width: 100%; /* Ancho completo del campo de entrada */
+        padding: 10px; /* Espaciado interno del campo de entrada */
+        border: 1px solid #ccc; /* Borde del campo de entrada */
+        border-radius: 3px; /* Bordes redondeados */
+    }
+
+    /* Estilo para el botón de envío */
+    button {
+        background-color: #007bff; /* Color de fondo del botón */
+        color: #fff; /* Color del texto del botón */
+        padding: 10px 20px; /* Espaciado interno del botón */
+        border: none; /* Sin borde */
+        border-radius: 3px; /* Bordes redondeados */
+        cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    }
+
+    p {
+        font-size: 16px; /* Tamaño de fuente */
+        color: #333; /* Color de texto */
+        margin-bottom: 10px; /* Margen inferior */
+        padding: 10px; /* Relleno interno */
+        background-color: #f0f0f0; /* Color de fondo */
+        border: 1px solid #ccc; /* Borde */
+        font-weight: bold; /* Negritas */
+    }
+
+
+</style>
+
+<body>
+    <div><h1>Registro registrado</h1>
+    <br />
+        <lebel>Id Del registro</lebel>
+        <p>@ViewBag.Mantenimiento</p>
+        <lebel>Nombre de quien hizo el registro</lebel>
+        <p>@ViewBag.Nombre;</p>
+        <lebel>Descripcion del registro</lebel>
+        <p>@ViewBag.Descripcion</p>
+    </div>
+
+    <form action="/Mantenimiento/RealizarEdicion" method="post" class="Guardar">
+
+        <div class="Contenedor" style="width: 100%;">
+            <lebel>Id del registro</lebel>
+            <input type="number" name="ID_Tabla" value="@ViewBag.Mantenimiento" readonly id="ID_Tabla">
+            <br />
+            <label for="psw"><b>Usuario</b></label>
+            <br />
+            <input type="text" placeholder="Digite el usuario" name="nombre" required>
+            <br />
+
+            <label for="psw"><b>Descripcion</b></label>
+            <br />
+            <input type="text" placeholder="Digite la descripcion" name="descripcion" required>
+            <br />
+            <br />
+            <button type="submit" class="boton" onclick="location.reload()">Guardar cambios</button> <br />
+
+        </div>
+
+    </form>
+    <script>
+        var miVariable = @ViewBag.Mantenimiento;
+        document.addEventListener("DOMContentLoaded", function () {
+            var inputElement = document.getElementById("ID_Tabla");
+            inputElement.value = miVariable;
+        });
+    </script>

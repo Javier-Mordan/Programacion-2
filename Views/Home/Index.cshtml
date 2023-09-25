@@ -1,0 +1,83 @@
+﻿
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<main>
+    <h1>Vente aquí</h1>
+
+    <img src="https://alicemotel.com/wp-content/uploads/2022/11/diferencia-hotel-motel.jpg" class="Principal" />
+
+</main>
+<br />
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        background: linear-gradient(to bottom, #FFD700, #C72020, #FFD700);
+        float:revert;
+    }
+
+
+    .Principal {
+        width: 100%;
+        height: auto;
+    }
+
+    .producto {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;        
+        padding: 10px;        
+        height: auto;
+        background: #D3B617;
+        float: left;
+        width: 33.33%; /* Distribuye en tres columnas igualmente espaciadas */
+        
+    }
+
+        img {
+            width: 50%;
+            margin-right: 20px;
+        }
+
+
+
+    .disponibilidad {
+        color: #333333;
+    }
+
+    .agotado {
+        display: inline-block;
+        padding: 5px 10px; /* Ajusta el relleno para el tamaño del botón */
+        background-color: #FF6600; /* Color de fondo del botón */
+        color: #fff; /* Color de texto del botón */
+        text-decoration: none; /* Quita el subrayado del enlace */
+        border-radius: 5px; /* Borde redondeado para el botón */
+        font-weight: lighter; /* Texto en negrita */
+        transition: background-color 0.3s;
+    }
+</style>
+
+<head>
+</head>
+<body>
+    @foreach(var log in ViewBag.Moteles)
+    {
+        <div class="producto">
+            <img src="https://fantasyrooms.com/blog/wp-content/uploads/2022/08/62-2_10_.jpg"  alt="Producto"/>
+            <div class="descripcion">
+                <p class="disponibilidad">@log.Nombre</p>
+                <p class="disponibilidad">@log.Ubicacion</p>
+                <a href="@Url.Action("Tu_Kukita", "Moteles", new {Id_Motel = log.Id_Motel})" class="agotado">Ir al motel</a>
+            </div>
+        </div>
+
+    }
+</body>

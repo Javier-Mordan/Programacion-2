@@ -1,0 +1,146 @@
+﻿
+@{
+    ViewBag.Title = "Tu_Kukita";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Tu_Kukita</h2>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        background: linear-gradient(to bottom, #981919, #C72020, #FF2828);
+    }
+    .producto {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        border:groove;
+        padding: 10px;
+        width: 100%;
+        margin: 0 auto;
+        background-color: palevioletred;
+    }
+
+        .producto img {
+            width: 30%;
+            margin-right: 20px;
+            
+        }
+
+    .descripcion {
+        flex-grow: 1;
+    }
+
+    .precio {
+        font-weight: bold;
+    }
+
+    .disponibilidad {
+        color: green;
+    }
+
+    .agotado {
+        color: red;
+    }
+
+    
+    
+
+</style>
+
+<body>
+    @if (ViewBag.Sbasico is not null)
+    {
+        <div class="producto">
+            <img src="https://fantasyrooms.com/blog/wp-content/uploads/2022/08/62-2_10_.jpg" alt="Producto">
+            <div class="descripcion">
+                <h2>Habitación Básica</h2>
+                <p class="precio">Precio: @ViewBag.Basico</p>
+                <p class="disponibilidad">Disponible: 20 unidades</p>
+                <button>Reservar</button>
+            </div>
+            <div class="container">
+                <h1>Servicios</h1>
+                @foreach (var log in ViewBag.LServicios)
+                {
+                    foreach (var servicio in ViewBag.Sbasico)
+                    {
+                        var ID = log.ID_Servicios;
+
+                        if (ID == servicio.ID_Servicio)
+                        {
+                            <p>@log.Servicio</p>
+                        }
+                    }
+
+                }
+
+            </div>
+        </div>
+    }
+    @if (ViewBag.LPresidencial is not null)
+    {
+        <div class="producto">
+            <img src="https://fantasyrooms.com/blog/wp-content/uploads/2022/08/62-2_10_.jpg" alt="Producto">
+            <div class="descripcion">
+                <h2>Habitación presidencial</h2>
+                <p class="precio">Precio: @ViewBag.Presidencial</p>
+                <p class="disponibilidad">Disponible: 20 unidades</p>
+                <button>Reservar</button>
+            </div>
+            <div class="container">
+                <h1>Servicios</h1>
+                @foreach (var log in ViewBag.LServicios)
+                {
+                    foreach (var servicio in ViewBag.LPresidencial)
+                    {
+                        var ID = log.ID_Servicios;
+
+                        if (ID == servicio.ID_Servicio)
+                        {
+                            <p>@log.Servicio</p>
+                        }
+                    }
+
+                }
+
+            </div>
+        </div>
+    }
+    @if (ViewBag.LVIP is not null)
+    {
+        <div class="producto">
+            <img src="https://fantasyrooms.com/blog/wp-content/uploads/2022/08/62-2_10_.jpg" alt="Producto">
+            <div class="descripcion">
+                <h2>Habitación VIP</h2>
+                <p class="precio">Precio: @ViewBag.VIP</p>
+                <p class="disponibilidad">Disponible: 20 unidades</p>
+                <button>Reservar</button>
+            </div>
+            <div class="container">
+                <h1>Servicios</h1>
+                @foreach (var log in ViewBag.LServicios)
+                {
+                    foreach (var servicio in ViewBag.LVIP)
+                    {
+                        var ID = log.ID_Servicios;
+
+                        if (ID == servicio.ID_Servicio)
+                        {
+                            <p>@log.Servicio</p>
+                        }
+                    }
+
+                }
+
+            </div>
+        </div>
+    }
+
+</body>
