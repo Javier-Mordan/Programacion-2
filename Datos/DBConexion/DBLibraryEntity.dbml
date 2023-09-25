@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Microproyecto_prog" Class="DBLibraryEntityDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-TAROVF3\SQLEXPRESS;Initial Catalog=Microproyecto_prog;Integrated Security=True" SettingsObjectName="Datos.Properties.Settings" SettingsPropertyName="Microproyecto_progConnectionString2" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.[_HabitacionXMotel]" Member="_HabitacionXMotel">
+    <Type Name="_HabitacionXMotel">
+      <Column Name="Id_TipoHabXMotel" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Precio" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="Id_Motel" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Id_TipoHabitaciones" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="TipoHabitacion__HabitacionXMotel" Member="TipoHabitacion" ThisKey="Id_TipoHabitaciones" OtherKey="Id_TipoHabitaciones" Type="TipoHabitacion" IsForeignKey="true" />
+      <Association Name="Motel__HabitacionXMotel" Member="Motel" ThisKey="Id_Motel" OtherKey="Id_Motel" Type="Motel" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TipoHabitacion" Member="TipoHabitacion">
+    <Type Name="TipoHabitacion">
+      <Column Name="Id_TipoHabitaciones" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Tipo_Habitacion" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
+      <Association Name="TipoHabitacion__HabitacionXMotel" Member="_HabitacionXMotel" ThisKey="Id_TipoHabitaciones" OtherKey="Id_TipoHabitaciones" Type="_HabitacionXMotel" />
+      <Association Name="TipoHabitacion_ServiciosXhabitaciones" Member="ServiciosXhabitaciones" ThisKey="Id_TipoHabitaciones" OtherKey="ID_Habitaciones" Type="ServiciosXhabitaciones" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Formas_de_pago" Member="Formas_de_pago">
+    <Type Name="Formas_de_pago">
+      <Column Name="Id_FormadePago" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Forma_pago" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
+      <Association Name="Formas_de_pago_Motel_Forma_Pago" Member="Motel_Forma_Pago" ThisKey="Id_FormadePago" OtherKey="Id_Formas_Pago" Type="Motel_Forma_Pago" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Lista_Usuarios" Member="Lista_Usuarios">
+    <Type Name="Lista_Usuarios">
+      <Column Name="Id_Usuario" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nom_Usuario" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="Psswd" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Tipo_usuario" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="Estatus" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Lista_Usuarios_Motel" Member="Motel" ThisKey="Id_Usuario" OtherKey="ID_Usuario" Type="Motel" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LogMantenimiento_Tabla" Member="LogMantenimiento_Tabla">
+    <Type Name="LogMantenimiento_Tabla">
+      <Column Name="Id_Tabla" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nom_Usuario" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="Fecha" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Estatus" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Motel" Member="Motel">
+    <Type Name="Motel">
+      <Column Name="Id_Motel" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="Ubicacion" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Id_Sector" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ID_Usuario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Motel__HabitacionXMotel" Member="_HabitacionXMotel" ThisKey="Id_Motel" OtherKey="Id_Motel" Type="_HabitacionXMotel" />
+      <Association Name="Motel_Motel_Forma_Pago" Member="Motel_Forma_Pago" ThisKey="Id_Motel" OtherKey="Id_Motel" Type="Motel_Forma_Pago" />
+      <Association Name="Motel_Puntuaciones" Member="Puntuaciones" ThisKey="Id_Motel" OtherKey="Id_Motel" Type="Puntuaciones" />
+      <Association Name="Motel_ServiciosXhabitaciones" Member="ServiciosXhabitaciones" ThisKey="Id_Motel" OtherKey="ID_Motel" Type="ServiciosXhabitaciones" />
+      <Association Name="Lista_Usuarios_Motel" Member="Lista_Usuarios" ThisKey="ID_Usuario" OtherKey="Id_Usuario" Type="Lista_Usuarios" IsForeignKey="true" />
+      <Association Name="Sectores_Motel" Member="Sectores" ThisKey="Id_Sector" OtherKey="Id_Sector" Type="Sectores" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Motel_Forma_Pago" Member="Motel_Forma_Pago">
+    <Type Name="Motel_Forma_Pago">
+      <Column Name="Id_Motel_forma_pago" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Id_Motel" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Id_Formas_Pago" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Motel_Motel_Forma_Pago" Member="Motel" ThisKey="Id_Motel" OtherKey="Id_Motel" Type="Motel" IsForeignKey="true" />
+      <Association Name="Formas_de_pago_Motel_Forma_Pago" Member="Formas_de_pago" ThisKey="Id_Formas_Pago" OtherKey="Id_FormadePago" Type="Formas_de_pago" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Puntuaciones" Member="Puntuaciones">
+    <Type Name="Puntuaciones">
+      <Column Name="Id_Puntuacion" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Fecha" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Valoracion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Resena" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Id_Motel" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Motel_Puntuaciones" Member="Motel" ThisKey="Id_Motel" OtherKey="Id_Motel" Type="Motel" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Sectores" Member="Sectores">
+    <Type Name="Sectores">
+      <Column Name="Id_Sector" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Sector" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
+      <Association Name="Sectores_Motel" Member="Motel" ThisKey="Id_Sector" OtherKey="Id_Sector" Type="Motel" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Servicios" Member="Servicios">
+    <Type Name="Servicios">
+      <Column Name="ID_Servicios" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Servicio" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Servicios_ServiciosXhabitaciones" Member="ServiciosXhabitaciones" ThisKey="ID_Servicios" OtherKey="ID_Servicio" Type="ServiciosXhabitaciones" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ServiciosXhabitaciones" Member="ServiciosXhabitaciones">
+    <Type Name="ServiciosXhabitaciones">
+      <Column Name="ID_ServiciosXhabitaciones" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ID_Motel" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ID_Habitaciones" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ID_Servicio" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Servicios_ServiciosXhabitaciones" Member="Servicios" ThisKey="ID_Servicio" OtherKey="ID_Servicios" Type="Servicios" IsForeignKey="true" />
+      <Association Name="TipoHabitacion_ServiciosXhabitaciones" Member="TipoHabitacion" ThisKey="ID_Habitaciones" OtherKey="Id_TipoHabitaciones" Type="TipoHabitacion" IsForeignKey="true" />
+      <Association Name="Motel_ServiciosXhabitaciones" Member="Motel" ThisKey="ID_Motel" OtherKey="Id_Motel" Type="Motel" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.Buscar_Precios" Method="Buscar_Precios">
+    <Parameter Name="Id_Motel" Parameter="id_Motel" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_Tipo" Parameter="iD_Tipo" Type="System.Int32" DbType="Int" />
+    <ElementType Name="Buscar_PreciosResult">
+      <Column Name="Precio" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GuardarPagos" Method="GuardarPagos">
+    <Parameter Name="Id_Motel" Parameter="id_Motel" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Id_Pago" Parameter="id_Pago" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.EditarMantenimiento" Method="EditarMantenimiento">
+    <Parameter Name="Id_Table" Parameter="id_Table" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Descripcion" Parameter="descripcion" Type="System.String" DbType="NVarChar(200)" />
+    <Parameter Name="Fecha" Parameter="fecha" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Estatus" Parameter="estatus" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.EliminarRegistroPorID" Method="EliminarRegistroPorID">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Guardar_Habitaciones" Method="Guardar_Habitaciones">
+    <Parameter Name="Precio" Parameter="precio" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Tipo" Parameter="tipo" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Guardar_Motel" Method="Guardar_Motel">
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Ubicacion" Parameter="ubicacion" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Sector" Parameter="sector" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Id_User" Parameter="id_User" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Guardar_Servicios" Method="Guardar_Servicios">
+    <Parameter Name="Motel" Parameter="motel" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Habitaciones" Parameter="habitaciones" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Servicio" Parameter="servicio" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Guardar_Usuario" Method="Guardar_Usuario">
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Pswd" Parameter="pswd" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Tipo_usuario" Parameter="tipo_usuario" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="estatus" Type="System.Boolean" DbType="Bit" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Registro" Method="Registro">
+    <Parameter Name="Nom_Usuario" Parameter="nom_Usuario" Type="System.String" DbType="NVarChar(25)" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>
